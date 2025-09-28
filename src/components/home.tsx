@@ -25,12 +25,6 @@ const HomePage = () => {
         <div className="container mx-auto flex items-center justify-between py-4">
           {/* Logo + Profile Pic */}
           <div className="flex items-center space-x-3">
-            <img
-              src="/src/components/assests/pp.png" // <-- yahan apni profile pic ka path daalna
-              alt="Atul Prajapati"
-              className="w-12 h-12 rounded-full border border-[#e50914] object-cover object-[58%_5%] scale-110"
-
-            />
             <a href="#" className="text-[#e50914] font-bold text-xl">
               Atul Prajapati
             </a>
