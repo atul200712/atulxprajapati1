@@ -8,6 +8,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Separator } from "./ui/separator";
+import abbImg from "./assests/app.jpg";
 
 const HomePage = () => {
   // Stats data
@@ -86,7 +87,7 @@ const HomePage = () => {
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/3">
               <img
-                src="/src/components/assests/app.jpg"
+                src={abbImg}
                 alt="Atul Prajapati"
                 className="rounded-lg w-full max-w-md mx-auto"
               />

@@ -190,12 +190,6 @@ const PortfolioGallery = ({
                     </div>
                   )}
                 </div>
-
-                <div className="mt-6 flex justify-end">
-                  <Button className="bg-red-600 hover:bg-red-700">
-                    Download Case Study
-                  </Button>
-                </div>
               </div>
             </>
           )}
@@ -208,8 +202,20 @@ const PortfolioGallery = ({
 // Default projects data for development
 const defaultProjects: Project[] = [
   {
-    id: "1",
-    title: "commercial video for product",
+  id: "1",
+  title: "Shoes ad",
+  category: "Commercial",
+  thumbnail:
+    "https://res.cloudinary.com/dq1fra5dd/image/upload/v1759033255/Screenshot_2025-09-28_094901_a4vmo0.png",
+  description: "Promo video of shoes",
+  videoUrl: "https://www.youtube.com/embed/FWjIn8DZ17E",
+  client: "Project",
+  duration: "00:06",
+  year: 2025
+},
+{
+  id: "2",
+  title: "commercial video for product",
     category: "Commercial",
     thumbnail:
       "https://res.cloudinary.com/dq1fra5dd/image/upload/v1758996745/Screenshot_2025-09-27_234155_yxik5g.png",
@@ -221,7 +227,7 @@ const defaultProjects: Project[] = [
     year: 2024,
   },
  {
-    id: "2",
+    id: "3",
     title: "Nitish Rajput",
     category: "Documentary",
     thumbnail:
@@ -234,7 +240,7 @@ const defaultProjects: Project[] = [
     year: 2025
   },
   {
-    id: "3",
+    id: "4",
     title: "Shoes ad",
     category: "Commercial",
     thumbnail:
@@ -247,7 +253,7 @@ const defaultProjects: Project[] = [
     year: 2025
   },
   {
-    id: "4",
+    id: "5",
     title: "P.M of India",
     category: "Documentary",
     thumbnail:
@@ -260,7 +266,7 @@ const defaultProjects: Project[] = [
     year: 2025
   },
   {
-    id: "5",
+    id: "6",
     title: "Maggie edit",
     category: "Commercial",
     thumbnail:
