@@ -203,10 +203,10 @@ const PortfolioGallery = ({
 const defaultProjects: Project[] = [
   {
   id: "1",
-  title: "Shoes ad",
-  category: "Commercial",
+  title: "Shushant Agrawal Edit",
+  category: "documentary",
   thumbnail:
-    "https://res.cloudinary.com/dq1fra5dd/image/upload/v1759033255/Screenshot_2025-09-28_094901_a4vmo0.png",
+    "https://res.cloudinary.com/dq1fra5dd/image/upload/v1760550939/Screenshot_2025-10-15_232311_veq5ua.png",
   description: "Promo video of shoes",
   videoUrl: "https://www.youtube.com/embed/FWjIn8DZ17E",
   client: "Project",
