@@ -89,7 +89,11 @@ const PortfolioGallery = ({
                 <img
                   src={project.thumbnail}
                   alt={project.title}
-                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                  className={`w-full h-48 transition-transform duration-300 group-hover:scale-105 ${
+                    project.id === "1" || project.id === "6"
+                      ? "object-contain bg-gray-800" // Haldiram & Maggie videos - show full image without cropping
+                      : "object-cover" // Other videos - default positioning
+                  }`}
                   onError={(e) => {
                     console.error(`Failed to load image: ${project.thumbnail}`);
                     e.currentTarget.src = '/app.jpg'; // fallback to local image
