@@ -8,7 +8,6 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Separator } from "./ui/separator";
-import abbImg from "./assests/app.jpg";
 
 const HomePage = () => {
   // Stats data
@@ -87,9 +86,16 @@ const HomePage = () => {
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/3">
               <img
-                src={abbImg}
+                src="/app.jpg"
                 alt="Atul Prajapati"
                 className="rounded-lg w-full max-w-md mx-auto"
+                onError={(e) => {
+                  console.error('Failed to load about image');
+                  e.currentTarget.src = '/pp.png'; // fallback
+                }}
+                onLoad={() => {
+                  console.log('About image loaded successfully');
+                }}
               />
             </div>
             <div className="md:w-2/3">
@@ -329,7 +335,7 @@ const HomePage = () => {
               <div className="flex space-x-4">
                 <a
                   href="https://www.instagram.com/atulxprajapati?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                  className="bg-[#1a1a1a] p-2 rounded-full hover:bg-gradient-to-tr hover:from-[#feda75] hover:via-[#fa7e1e] hover:via-[#ff0080] hover:to-[#962fbf] transition-all duration-300 hover:scale-110"
+                  className="bg-[#1a1a1a] p-2 rounded-full hover:bg-gradient-to-tr hover:from-[#feda75] hover:via-[#fa7e1e] hover:to-[#962fbf] transition-all duration-300 hover:scale-110"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

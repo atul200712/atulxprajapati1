@@ -4,8 +4,6 @@ import { motion } from "framer-motion";
 import { Download, Play } from "lucide-react";
 import { DiPhotoshop, DiIllustrator } from "react-icons/di";
 import { SiAdobeaftereffects, SiAdobepremierepro } from "react-icons/si";
-import  ppimg from "./assests/pp.png";
-import resumePdf from "./assests/resume.pdf";
 interface HeroSectionProps {
   name?: string;
   title?: string;
@@ -18,7 +16,7 @@ const HeroSection = ({
   name = "Atul Prajapati",
   title = "Creative ",
   description = "Transforming raw footage into compelling stories. Specializing in commercial, documentary, and creative content.",
-  profileImage = ppimg,
+  profileImage = "/pp.png",
   cvUrl = "#",
 }: HeroSectionProps) => {
   return (
@@ -49,7 +47,7 @@ const HeroSection = ({
                 onClick={() => {
                   try {
                     const link = document.createElement("a");
-                    link.href = resumePdf;
+                    link.href = "/resume.pdf";
                     link.download = "Atul_Prajapati_Resume.pdf";
                     document.body.appendChild(link);
                     link.click();
@@ -97,8 +95,15 @@ const HeroSection = ({
             >
               <img
                 src={profileImage}
-                alt="Profile headshotjj"
-                className="w-full h-full object-cover object-[58%_3%]  rounded-full  transition-all duration-500 ease-in-out"
+                alt="Profile headshot"
+                className="w-full h-full object-cover object-[58%_3%] rounded-full transition-all duration-500 ease-in-out"
+                onError={(e) => {
+                  console.error('Failed to load profile image:', profileImage);
+                  e.currentTarget.src = '/app.jpg'; // fallback
+                }}
+                onLoad={() => {
+                  console.log('Profile image loaded successfully');
+                }}
               />
             </motion.div>
 

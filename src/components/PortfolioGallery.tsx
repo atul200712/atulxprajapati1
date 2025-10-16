@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Cloudinary } from '@cloudinary/url-gen';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -56,12 +55,9 @@ const PortfolioGallery = ({
     <div className="w-full bg-[#0d0d0d] py-16 rounded-lg">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-white mb-2">
-            Latest Portfolio
-          </h2>
+          <h2 className="text-3xl font-bold text-white mb-2">Latest Portfolio</h2>
           <p className="text-gray-400 mb-8">
-            A showcase of my recent video editing projects across different
-            genres and styles
+            A showcase of my recent video editing projects across different genres and styles
           </p>
 
           <div className="flex flex-wrap justify-center gap-2 mb-8">
@@ -88,12 +84,19 @@ const PortfolioGallery = ({
               key={project.id}
               className="bg-gray-900 border-gray-800 overflow-hidden group cursor-pointer"
               onClick={() => handleProjectClick(project)}
-            > 
+            >
               <div className="relative overflow-hidden">
                 <img
                   src={project.thumbnail}
                   alt={project.title}
                   className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                  onError={(e) => {
+                    console.error(`Failed to load image: ${project.thumbnail}`);
+                    e.currentTarget.src = '/app.jpg'; // fallback to local image
+                  }}
+                  onLoad={() => {
+                    console.log(`Successfully loaded image: ${project.thumbnail}`);
+                  }}
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <span className="text-white font-medium">View Project</span>
@@ -131,28 +134,34 @@ const PortfolioGallery = ({
           {selectedProject && (
             <>
               <DialogHeader>
-                <DialogTitle className="text-xl font-bold">
-                  {selectedProject.title}
-                </DialogTitle>
+                <DialogTitle className="text-xl font-bold">{selectedProject.title}</DialogTitle>
                 <DialogDescription className="text-gray-400">
-                  {selectedProject.category} •{" "}
-                  {selectedProject.client &&
-                    `Client: ${selectedProject.client}`}{" "}
+                  {selectedProject.category}{" "}
+                  {selectedProject.client && `• Client: ${selectedProject.client}`}{" "}
                   {selectedProject.year && `• ${selectedProject.year}`}
                 </DialogDescription>
               </DialogHeader>
 
               <div className="mt-4">
                 {selectedProject.videoUrl ? (
-                  <div className="aspect-video w-full overflow-hidden rounded-md">
-                    <iframe
-                      src={selectedProject.videoUrl}
-                      className="w-full h-full"
-                      title={selectedProject.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
+                  selectedProject.videoUrl.includes("youtube.com") ? (
+                    <div className="aspect-video w-full overflow-hidden rounded-md">
+                      <iframe
+                        src={selectedProject.videoUrl}
+                        className="w-full h-full"
+                        title={selectedProject.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                  ) : (
+                    <div className="aspect-video w-full overflow-hidden rounded-md bg-black flex items-center justify-center">
+                      <video controls className="w-full h-full">
+                        <source src={selectedProject.videoUrl} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  )
                 ) : (
                   <div className="aspect-video w-full bg-gray-800 flex items-center justify-center rounded-md">
                     <p className="text-gray-400">Video not available</p>
@@ -167,25 +176,19 @@ const PortfolioGallery = ({
                 <div className="mt-4 grid grid-cols-2 gap-4">
                   {selectedProject.client && (
                     <div>
-                      <h5 className="text-sm font-medium text-gray-400">
-                        Client
-                      </h5>
+                      <h5 className="text-sm font-medium text-gray-400">Client</h5>
                       <p className="text-white">{selectedProject.client}</p>
                     </div>
                   )}
                   {selectedProject.duration && (
                     <div>
-                      <h5 className="text-sm font-medium text-gray-400">
-                        Duration
-                      </h5>
+                      <h5 className="text-sm font-medium text-gray-400">Duration</h5>
                       <p className="text-white">{selectedProject.duration}</p>
                     </div>
                   )}
                   {selectedProject.year && (
                     <div>
-                      <h5 className="text-sm font-medium text-gray-400">
-                        Year
-                      </h5>
+                      <h5 className="text-sm font-medium text-gray-400">Year</h5>
                       <p className="text-white">{selectedProject.year}</p>
                     </div>
                   )}
@@ -199,23 +202,23 @@ const PortfolioGallery = ({
   );
 };
 
-// Default projects data for development
+// Default projects data
 const defaultProjects: Project[] = [
   {
   id: "1",
-  title: "Shushant Agrawal Edit",
-  category: "documentary",
-  thumbnail:
-    "https://res.cloudinary.com/dq1fra5dd/image/upload/v1760550939/Screenshot_2025-10-15_232311_veq5ua.png",
-  description: "Promo video of shoes",
+  title: "Haldiram Edit - Sushant Agrawal",
+  category: "Documentary",
+  thumbnail: "https://res.cloudinary.com/dq1fra5dd/image/upload/v1760550939/Screenshot_2025-10-15_232311_veq5ua.png",
+  description: "A creative documentary-style short edit showcasing Haldiram's branding and products, edited by Sushant Agrawal.",
   videoUrl: "https://www.youtube.com/embed/FWjIn8DZ17E",
   client: "Project",
-  duration: "00:06",
+  duration: "00:58", // short video, typical YouTube short duration
   year: 2025
-},
-{
-  id: "2",
-  title: "commercial video for product",
+}
+,
+  {
+    id: "2",
+    title: "Commercial video for product",
     category: "Commercial",
     thumbnail:
       "https://res.cloudinary.com/dq1fra5dd/image/upload/v1758996745/Screenshot_2025-09-27_234155_yxik5g.png",
@@ -224,9 +227,9 @@ const defaultProjects: Project[] = [
     videoUrl: "https://res.cloudinary.com/dq1fra5dd/video/upload/v1758996818/main_1_ac6xqo.mp4",
     client: "Project",
     duration: "0:14",
-    year: 2024,
+    year: 2025,
   },
- {
+  {
     id: "3",
     title: "Nitish Rajput",
     category: "Documentary",
@@ -237,7 +240,7 @@ const defaultProjects: Project[] = [
       "https://res.cloudinary.com/dq1fra5dd/video/upload/v1759027240/nitish_bhai_xfxovv.mp4",
     client: "Project",
     duration: "00:08",
-    year: 2025
+    year: 2025,
   },
   {
     id: "4",
@@ -250,7 +253,7 @@ const defaultProjects: Project[] = [
       "https://res.cloudinary.com/dq1fra5dd/video/upload/v1759027231/Comp_1_1_xuadit.mp4",
     client: "Project",
     duration: "00:06",
-    year: 2025
+    year: 2025,
   },
   {
     id: "5",
@@ -263,7 +266,7 @@ const defaultProjects: Project[] = [
       "https://res.cloudinary.com/dq1fra5dd/video/upload/v1759027231/containing_World_Mapcomp_litsti.mp4",
     client: "Project",
     duration: "00:05",
-    year: 2025
+    year: 2025,
   },
   {
     id: "6",
@@ -276,8 +279,8 @@ const defaultProjects: Project[] = [
       "https://res.cloudinary.com/dq1fra5dd/video/upload/v1759027229/Comp_1_nmzl01.mp4",
     client: "Project",
     duration: "00:03",
-    year: 2025
-  }
+    year: 2025,
+  },
 ];
 
 export default PortfolioGallery;
