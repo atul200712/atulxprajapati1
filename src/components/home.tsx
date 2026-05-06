@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import HeroSection from "./HeroSection";
 import ServicesSection from "./ServicesSection";
 import PortfolioGallery from "./PortfolioGallery";
+import ShowcaseGallery from "./ShowcaseGallery";
 import TestimonialsCarousel from "./TestimonialsCarousel";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -140,6 +141,11 @@ const HomePage = () => {
         <div className="container mx-auto px-4">
           <PortfolioGallery />
         </div>
+      </section>
+
+      {/* Featured Showcase Section (New Vertical Layout) */}
+      <section id="showcase" className="bg-[#0b0b0b]">
+        <ShowcaseGallery />
       </section>
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-[#0b0b0b]">
