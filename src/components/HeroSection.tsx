@@ -1,142 +1,94 @@
 import React from "react";
-import { Button } from "./ui/button";
 import { motion } from "framer-motion";
-import { Download, Play } from "lucide-react";
-import { DiPhotoshop, DiIllustrator } from "react-icons/di";
-import { SiAdobeaftereffects, SiAdobepremierepro } from "react-icons/si";
-import  ppimg from "./assests/pp.png";
-import resumePdf from "./assests/resume.pdf";
-interface HeroSectionProps {
-  name?: string;
-  title?: string;
-  description?: string;
-  profileImage?: string;
-  cvUrl?: string;
-}
 
-const HeroSection = ({
-  name = "Atul Prajapati",
-  title = "Creative ",
-  description = "Transforming raw footage into compelling stories. Specializing in commercial, documentary, and creative content.",
-  profileImage = ppimg,
-  cvUrl = "#",
-}: HeroSectionProps) => {
+const HeroSection = () => {
   return (
-    <section className="relative w-full min-h-[600px] bg-black flex items-center px-4 md:px-8 lg:px-16 overflow-hidden">
-      {/* Background lighting effects */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-red-600/20 blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/3 w-80 h-80 rounded-full bg-blue-600/10 blur-3xl"></div>
-        <div className="absolute top-1/3 right-1/4 w-72 h-72 rounded-full bg-purple-600/10 blur-3xl"></div>
-      </div>
-
-      {/* Vignette effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-70"></div>
-
-      <div className="container mx-auto max-w-7xl z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Left column - Text content */}
-          <div className="flex-1 text-white">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              Hello, I'm ,<span className="font-extrabold">{name} </span>
-              <span className="block text-red-600">
-                {title} <span className="font-extrabold">Video Editor</span>
-              </span>
-            </h1>
-            <p className="text-gray-300 mb-8 max-w-lg">{description}</p>
-            <div className="flex flex-wrap gap-4">
-              <Button
-                onClick={() => {
-                  try {
-                    const link = document.createElement("a");
-                    link.href = resumePdf;
-                    link.download = "Atul_Prajapati_Resume.pdf";
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                  } catch (error) {
-                    console.error("Error downloading CV:", error);
-                    // You could show a toast notification here if download fails
-                  }
-                }}
-                className="bg-red-600 hover:bg-red-700 text-white"
-              >
-                <Download className="mr-2 h-4 w-4" /> Download CV
-              </Button>
-              <Button
-                onClick={() => {
-                  document.getElementById("portfolio")?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  });
-                }}
-                variant="outline"
-                className="border-white text-black hover:bg-white/10"
-              >
-                <Play className="mr-2 h-4 w-4" /> View My Work
-              </Button>
-            </div>
+    <section className="relative w-full h-screen bg-[#050505] flex items-center justify-center overflow-hidden px-6 md:px-20">
+      <div className="container mx-auto flex flex-col items-center justify-center relative h-full">
+        {/* Main Centered Content Wrapper */}
+        <div className="relative z-10 flex flex-col items-center justify-center">
+          {/* Stacked Vertical Typography - Centered */}
+          <div className="flex flex-col items-center justify-center select-none pointer-events-none leading-none">
+            <motion.h1 
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-[100px] md:text-[180px] font-black tracking-tighter text-white"
+            >
+              PO
+            </motion.h1>
+            <motion.h1 
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+              className="text-[100px] md:text-[180px] font-black tracking-tighter text-[#FF6B00]"
+            >
+              RT
+            </motion.h1>
+            <motion.h1 
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="text-[100px] md:text-[180px] font-black tracking-tighter text-white"
+            >
+              FO
+            </motion.h1>
+            <motion.h1 
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              className="text-[100px] md:text-[180px] font-black tracking-tighter text-[#FF6B00]"
+            >
+              LIO
+            </motion.h1>
           </div>
 
-          {/* Right column - Profile image with animated ring */}
-          <div className="relative flex-shrink-0">
-            <motion.div
-              className="w-64 h-64 md:w-80 md:h-80 rounded-full border-2 border-red-600"
-              animate={{
-                boxShadow: [
-                  "0 0 10px rgba(229, 9, 20, 0.5)",
-                  "0 0 20px rgba(229, 9, 20, 0.7)",
-                  "0 0 10px rgba(229, 9, 20, 0.5)",
-                ],
-              }}
-              transition={{
-                duration: 0,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <img
-                src={profileImage}
-                alt="Profile headshotjj"
-                className="w-full h-full object-cover object-[58%_3%]  rounded-full  transition-all duration-500 ease-in-out"
-              />
-            </motion.div>
-
-            {/* Software badges */}
-            <motion.div
-              className="absolute top-0 right-0 left-[13rem] bg-[#1c02dc] w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <SiAdobeaftereffects size={24} />
-            </motion.div>
-
-            <motion.div
-              className="absolute bottom-10 right-0 bg-purple-500 w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg"
-              animate={{ y: [0, 10, 0] }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <DiPhotoshop size={24} />
-            </motion.div>
-
-            <motion.div
-              className="absolute top-1/2 -right-5 bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg"
-              animate={{ x: [0, 10, 0] }}
-              transition={{
-                duration: 3.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <SiAdobepremierepro size={24} />
-            </motion.div>
-          </div>
+          {/* Subtitle / Description - Also Centered */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="mt-10 text-center space-y-4"
+          >
+            <p className="text-[#FF6B00] font-bold tracking-[0.4em] text-xs uppercase">Editor & Visual Engineer</p>
+            <p className="text-white/40 max-w-sm text-xs md:text-sm leading-relaxed mx-auto italic">
+              "I don't just edit videos. I make people watch till the end."
+            </p>
+          </motion.div>
         </div>
+
+        {/* Sticker Cutout - Positioned relative to the middle content */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8, x: 100 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 100, 
+            damping: 15, 
+            delay: 0.5 
+          }}
+          className="absolute right-0 md:right-[10%] top-1/2 -translate-y-1/2 w-[250px] md:w-[500px] z-20 pointer-events-none opacity-80 md:opacity-100"
+        >
+          <img 
+            src="/cutout.png" 
+            alt="Atul Prajapati" 
+            className="w-full h-auto drop-shadow-[0_20px_50px_rgba(255,107,0,0.3)]"
+          />
+        </motion.div>
+
+        {/* Floating Decorative Elements */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#FF6B00]/5 rounded-full blur-[150px] -z-10"></div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div 
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 2 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/20"
+      >
+        <div className="w-px h-12 bg-gradient-to-b from-[#FF6B00] to-transparent"></div>
+        <span className="text-[10px] uppercase tracking-widest font-bold">Scroll</span>
+      </motion.div>
     </section>
   );
 };

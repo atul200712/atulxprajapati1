@@ -7,8 +7,8 @@
       --background: 0 0% 100%;
       --foreground: 222.2 84% 4.9%;
 
-      --card: 0 0% 100%;
-      --card-foreground: 222.2 84% 4.9%;
+      --card: 15 12% 12%;
+      --card-foreground: 210 40% 98%;
 
       --popover: 0 0% 100%;
       --popover-foreground: 222.2 84% 4.9%;
@@ -35,14 +35,19 @@
       --radius: 0.5rem;
     }
 
+    body {
+      @apply bg-dark text-white;
+      color-scheme: dark;
+    }
+
     .dark {
-      --background: 222.2 84% 4.9%;
+      --background: 0 0% 3%;
       --foreground: 210 40% 98%;
 
-      --card: 222.2 84% 4.9%;
+      --card: 15 12% 12%;
       --card-foreground: 210 40% 98%;
 
-      --popover: 222.2 84% 4.9%;
+      --popover: 0 0% 5%;
       --popover-foreground: 210 40% 98%;
 
       --primary: 210 40% 98%;
@@ -71,6 +76,39 @@
       @apply border-border;
     }
     body {
-      @apply bg-background text-foreground;
+      @apply bg-dark text-white;
+    }
+  }
+
+  /* Custom utilities */
+  .text-outline {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+    color: transparent;
+  }
+
+  .vertical-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    min-width: 200%;
+    gap: 2rem;
+    animation: portfolio-marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  .marquee-track span {
+    min-width: max-content;
+  }
+
+  @keyframes portfolio-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
     }
   }
