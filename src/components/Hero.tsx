@@ -181,19 +181,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Floating Subtitle & Details (overlapping on top) */}
-      <div className="absolute inset-x-0 bottom-20 z-30 flex flex-col items-center">
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.2 }}
-          className="text-[10px] font-medium uppercase tracking-[0.25em] text-white/90 md:text-xs bg-black/40 backdrop-blur-md px-4 py-1.5 rounded-full border-2 border-accent"
-        >
-          Video Editor <span className="text-accent">/</span> Motion Designer{" "}
-          <span className="text-accent">/</span> Visual Storyteller
-        </motion.p>
-      </div>
-
       {/* Corners UI */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -224,7 +211,7 @@ export default function Hero() {
       {/* Play Reel Indicator */}
       <motion.div
         style={{ opacity: indicatorOpacity }}
-        className="fixed bottom-8 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center gap-2 cursor-pointer pointer-events-auto"
+        className="absolute bottom-24 left-1/2 z-40 hidden -translate-x-1/2 flex-col items-center gap-2 cursor-pointer pointer-events-auto md:flex"
         onClick={() => {
           const el = document.getElementById("gallery");
           if (el) {

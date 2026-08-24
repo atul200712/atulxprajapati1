@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import Loader from "./components/Loader";
 import Cursor from "./components/Cursor";
@@ -17,10 +17,11 @@ import ProjectForm from "./components/ProjectForm";
 export default function App() {
   const [showLoader, setShowLoader] = useState(true);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const completeLoading = useCallback(() => setShowLoader(false), []);
 
   return (
     <div className="grain relative min-h-screen bg-ink text-white">
-      {showLoader && <Loader onComplete={() => setShowLoader(false)} />}
+      {showLoader && <Loader onComplete={completeLoading} />}
 
       <Cursor />
       <Nav onOpenForm={() => setIsFormOpen(true)} />
