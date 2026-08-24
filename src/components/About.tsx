@@ -16,7 +16,7 @@ export default function About() {
           <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
             <motion.img
               style={{ y: imgY }}
-              src="/images/portrait-new.png"
+              src={`${import.meta.env.BASE_URL}images/portrait-new.png`}
               alt="Atul Prajapati"
               className="h-[120%] w-full object-cover"
               loading="lazy"

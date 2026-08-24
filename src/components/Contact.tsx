@@ -12,7 +12,7 @@ export default function Contact({ onOpenForm }: ContactProps) {
     >
       <div className="pointer-events-none absolute inset-0">
         <img
-          src="/images/work-2.jpg"
+          src={`${import.meta.env.BASE_URL}images/work-2.jpg`}
           alt=""
           className="h-full w-full object-cover opacity-20"
         />
@@ -74,7 +74,7 @@ export default function Contact({ onOpenForm }: ContactProps) {
         <div className="mx-auto flex max-w-[1600px] flex-col items-center justify-between gap-4 text-[11px] uppercase tracking-[0.2em] text-white/40 md:flex-row">
           <span>© 2026 Atul Prajapati Studio</span>
           <div className="flex gap-6">
-            <a href="/Resume-Video-Editor.pdf" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-accent">Resume</a>
+            <a href={`${import.meta.env.BASE_URL}Resume-Video-Editor.pdf`} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-accent">Resume</a>
             <a href="https://www.instagram.com/atulxprajapati?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw%3D%3D" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Instagram</a>
             <a href="https://www.youtube.com/@Atulxprajapati" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">YouTube</a>
             <a href="https://www.fiverr.com/s/L3e0Xma" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Fiverr</a>

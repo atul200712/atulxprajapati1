@@ -60,7 +60,7 @@ export default function Hero() {
         className="absolute inset-0 -m-8"
       >
         <img
-          src="/images/hero.jpg"
+          src={`${import.meta.env.BASE_URL}images/hero.jpg`}
           alt=""
           className="h-full w-full object-cover opacity-50 filter grayscale contrast-125 brightness-50"
         />
@@ -133,7 +133,7 @@ export default function Hero() {
           className="relative h-[120vh] w-auto max-w-none translate-y-[55vh] md:h-[170vh] md:translate-y-[80vh]"
         >
           <img
-            src="/images/new-hero-portrait.png"
+            src={`${import.meta.env.BASE_URL}images/new-hero-portrait.png`}
             alt="Atul Prajapati"
             className="h-full w-auto object-contain select-none"
           />
